@@ -37,7 +37,6 @@ func main() {
 func (acc *Account) GetBattletag() {
 	resp, err := http.Get(fmt.Sprintf("http://us.battle.net/api/d3/profile/%s-%s/",
 		strings.ToLower(acc.BattleTagName), strings.ToLower(acc.BattleTagNumber)))
-
 	defer resp.Body.Close()
 
 	if err != nil {
@@ -45,7 +44,6 @@ func (acc *Account) GetBattletag() {
 	}
 
 	body, err := ioutil.ReadAll(resp.Body)
-
 	error := json.Unmarshal(body, &acc)
 
 	if error != nil {
@@ -73,7 +71,8 @@ func (acc *Account) ShowKills() {
 func (acc *Account) GetHeroes() {
 	for _, v := range acc.Heroes {
 		if v.HeroId != 0 {
-			resp, err := http.Get(fmt.Sprintf("http://us.battle.net/api/d3/profile/%s-%s/hero/%v", acc.BattleTagName, acc.BattleTagNumber, v.HeroId))
+			resp, err := http.Get(fmt.Sprintf("http://us.battle.net/api/d3/profile/%s-%s/hero/%v",
+				acc.BattleTagName, acc.BattleTagNumber, v.HeroId))
 			defer resp.Body.Close()
 
 			if err != nil {
