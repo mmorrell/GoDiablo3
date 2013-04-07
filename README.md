@@ -1,6 +1,6 @@
 ##Diablo 3 Profiles in Go by mmorrell
 
-###More to come including threading. This was made quickly.
+###More to come including goroutines
 ######example output:
 
 Time Played:
