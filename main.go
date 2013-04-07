@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"strings"
 )
 
 type Account struct {
@@ -36,7 +35,7 @@ func main() {
 
 func (acc *Account) GetBattletag() {
 	resp, err := http.Get(fmt.Sprintf("http://us.battle.net/api/d3/profile/%s-%s/",
-		strings.ToLower(acc.BattleTagName), strings.ToLower(acc.BattleTagNumber)))
+		acc.BattleTagName, acc.BattleTagNumber))
 	defer resp.Body.Close()
 
 	if err != nil {
